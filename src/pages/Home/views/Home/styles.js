@@ -1,3 +1,9 @@
 export default () => ({
-  container: {},
+  container: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  results: {
+    width: '50%'
+  }
 });

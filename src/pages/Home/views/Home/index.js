@@ -1,14 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Form, Field } from "react-final-form";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { withStyles } from "@material-ui/core/styles";
-import styles from "./styles";
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
+
+import FormContainer from '../../containers/FormContainer';
 
 const Home = ({ classes }) => {
   return (
     <div className={classes.container}>
-      <Form />
+      <FormContainer />
+      <div className={classes.results} />
     </div>
   );
 };
