@@ -4,14 +4,23 @@ import Form from '../views/Form';
 import { FORM_NAME, WEB_SITE_REGULAR } from '../constants';
 
 class FormContainer extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.handleHtml = this.handleHtml.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
   onSubmit(data) {
-    console.log(data);
-    fetch(data.url, {
-      method: 'get',
-      mode: 'no-cors'
+    fetch(`http://localhost:3001`, {
+      method: 'get'
     })
-      .then((response) => response.text())
-      .then((html) => console.log(`html = ${html}`));
+      .then((response) => response.json())
+      .then(this.handleHtml);
+  }
+
+  handleHtml({ html }) {
+    console.log('html === ', html);
   }
 
   static validate(data) {
