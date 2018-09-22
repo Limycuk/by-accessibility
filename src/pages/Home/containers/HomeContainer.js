@@ -1,26 +1,32 @@
 import React, { PureComponent } from 'react';
 
-import Form from '../views/Form';
+import Home from '../views/Home';
 import { FORM_NAME, WEB_SITE_REGULAR } from '../constants';
 
-class FormContainer extends PureComponent {
+class HomeContainer extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      result: null
+    };
 
     this.handleHtml = this.handleHtml.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(data) {
-    fetch(`http://localhost:3001`, {
+    fetch(`http://localhost:3001?url=${data.url}`, {
       method: 'get'
     })
       .then((response) => response.json())
       .then(this.handleHtml);
   }
 
-  handleHtml({ html }) {
-    console.log('html === ', html);
+  handleHtml(data) {
+    this.setState({
+      result: data
+    });
   }
 
   static validate(data) {
@@ -36,14 +42,17 @@ class FormContainer extends PureComponent {
   }
 
   render() {
+    const { result } = this.state;
+
     const props = {
       form: FORM_NAME,
-      validate: FormContainer.validate,
-      onSubmit: this.onSubmit
+      validate: HomeContainer.validate,
+      onSubmit: this.onSubmit,
+      result
     };
 
-    return <Form {...props} />;
+    return <Home {...props} />;
   }
 }
 
-export default FormContainer;
+export default HomeContainer;
