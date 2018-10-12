@@ -16,7 +16,7 @@ class HomeContainer extends PureComponent {
   }
 
   onSubmit(data) {
-    fetch(`http://localhost:3001?url=${data.url}`, {
+    fetch(`http://localhost:3001/api?url=${data.url}`, {
       method: 'get'
     })
       .then((response) => response.json())
